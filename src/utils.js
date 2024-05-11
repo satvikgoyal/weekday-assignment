@@ -58,7 +58,7 @@ export function filterJobs({
     if(experience.length){
         experience.forEach((exp) => {
             newItems = newItems.filter(item => {
-                return item.minExp >= exp
+                return item.minExp <= exp
             })
         })
     }
