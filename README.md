@@ -8,7 +8,7 @@ Note: For the scope of this assignment, the "filter jobs" section is only limite
 0. Ensure you are using the version of `node >= 14.19.0`.
 1. Clone the repo and run `npm install` to install the dependencies.
 2. Run `npm run start` in one terminal.
-3. The server will now be up at http://localhost:3000
+3. The server will now be up at `http://localhost:3000`
 
   
 ### Usage
@@ -21,3 +21,7 @@ Note: For the scope of this assignment, the "filter jobs" section is only limite
 6. Clear a filter with multiple value all at once. All jobs should be visible.
 7. Try putting some random company name and check if their is any jobs associated with or not.
 8. Try to perform the operations on mobile devices as well. 
+
+#### Check usage here
+
+`https://satvik-application-platform.netlify.app/`
