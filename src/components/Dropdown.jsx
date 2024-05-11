@@ -8,7 +8,7 @@ const Dropdown = ({showDropDownClass, options, onSelect, dropdownRef}) => {
                options.map((option) => {
                    const {value, name} = option
                    return (
-                        <li className="list-item" onClick={() => onSelect(value)}>{name}</li>
+                        <li className="list-item" onClick={() => onSelect(value)} key={value}>{name}</li>
                    )
                })
            }

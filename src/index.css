@@ -202,6 +202,7 @@ code {
   flex-wrap: wrap;
   gap: 52px;
   align-items: center;
+  justify-content: center;
 }
 
 .chip-value-container{
@@ -395,7 +396,7 @@ code {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   margin-bottom: 50px;
 }
 
@@ -440,6 +441,20 @@ code {
     box-sizing: border-box;
 }
 
+.main-content{
+  margin: 70px;
+  padding: 70px;
+}
+
+.company-name-filter{
+  height: 42px;
+}
+
+.company-name-filter > .input-container >  .placeholder-text{
+  position: relative;
+  top: 2px;
+}
+
 @-webkit-keyframes sk-bounce {
   0%, 100% { -webkit-transform: scale(0.0) };
   50% { -webkit-transform: scale(1.0) };
@@ -452,5 +467,17 @@ code {
   } 50% {
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
+  }
+}
+
+
+@media (max-width: 750px) {
+  .main-content{
+    padding: 50px;
+    margin: 0px;
+  }
+
+  .multi-select-filter-container > .value-container.chip-container{
+    width: 180px;
   }
 }
