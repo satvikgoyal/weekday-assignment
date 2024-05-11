@@ -14,8 +14,9 @@ Note: For the scope of this assignment, the "filter jobs" section is only limite
 ### Usage
 
 0. Once the DOM content loads you can perform various operations.
-1. Search jobs based on filters like Roles, Experience, Base pay and company name. You can have multiple value for a single filter as well.
-2. Perform infinite scroll with and without filter applied.
-3. Clear out filters individually and see jobs getting updated accordingly.
-4. Clear a filter with multiple value all at once. All jobs should be visible.
-5. Try putting some random company name and check if their is any jobs associated with or not.
+1. Search jobs based on filters like Roles, Experience, Base pay and company name. Select from the dropdown itself.
+3. Select multiple value/
+4. Perform infinite scroll with and without filter applied.
+5. Clear out filters individually and see jobs getting updated accordingly.
+6. Clear a filter with multiple value all at once. All jobs should be visible.
+7. Try putting some random company name and check if their is any jobs associated with or not.
