@@ -1,12 +1,17 @@
 import React, { useState, useRef } from 'react'
+
+//components
 import Chips from './Chips'
 import Dropdown from './Dropdown'
+
+//customhook
 import { useClickOutSide } from '../customhooks/clickoutside';
 
 const MultiselectFilter = (props) => {
   const {filter, chips, onSelect, inputVal, handleClearAll, handleDelete, handleInputChange} = props;
   const [showDropDownClass, setShowDropdownClass] = useState("");
 
+  //using to maintain the get the current state of the referenced object
   const dropdownRef = useRef(null);
 
   const onOutSideClick = () => {
@@ -17,6 +22,7 @@ const MultiselectFilter = (props) => {
     setShowDropdownClass("show-dropdown")
   }
 
+  //calling the custom hook function to close the dropdown if clicked outside
   useClickOutSide([dropdownRef], onOutSideClick)
 
 

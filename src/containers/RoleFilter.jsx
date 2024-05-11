@@ -1,35 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateRoles, clearFilter } from '../redux/jobs/actions'
+
+//components
 import MultiselectFilter from '../components/MultiselectFilter'
+
+//actions
+import { updateRoles, clearFilter } from '../redux/jobs/actions'
+
+//utils
 import { filterOptions } from '../utils'
 
-const FILTER = {
-    label: 'Roles',
-    options: [
-        {name: 'Frontend', value: 'frontend'},
-        {name: 'Backend', value: 'backend'},
-        {name: 'Fullstack', value: 'fullstack'},
-        {name: 'Android', value: 'android'},
-        {name: 'Ios', value: 'ios'},
-        {name: 'Tech lead', value: 'tech lead'},
-    ]
-}
-const RoleFilter = () => {
-    const [inputVal, setInputVal] = useState('');
+//constants
+import { ROLES_FILTER } from '../constants'
 
+const RoleFilter = () => {
     const dispatch = useDispatch();
     const {roles} = useSelector(state => state.jobReducer)
 
-    const [filters, setFilters] = useState(FILTER);
+    const [filters, setFilters] = useState(ROLES_FILTER);
 
     useEffect(() => {
-        setFilters(prevItem => ({...prevItem, options: filterOptions(FILTER.options, roles)}))
+        setFilters(prevItem => ({...prevItem, options: filterOptions(ROLES_FILTER.options, roles)}))
     },[roles])
-
-    const handleInputValChange = (val) => {
-        setInputVal(val);
-    }
 
     const handleSelect = (role) => {
         dispatch(updateRoles(role));
@@ -44,7 +36,13 @@ const RoleFilter = () => {
         dispatch(clearFilter('roles', newRoles))
     }
   return (
-    <MultiselectFilter chips={roles} filter={filters} onSelect={handleSelect} handleClearAll={handleClearAll} handleDelete={handleDelete} handleInputChange={handleInputValChange} inputVal={inputVal}/>
+    <MultiselectFilter
+        chips={roles}
+        filter={filters}
+        onSelect={handleSelect}
+        handleClearAll={handleClearAll}
+        handleDelete={handleDelete}
+    />
   )
 }
 

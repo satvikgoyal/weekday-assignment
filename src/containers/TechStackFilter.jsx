@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateTechStacks, clearFilter } from '../redux/jobs/actions'
+
+//components
 import MultiselectFilter from '../components/MultiselectFilter'
+
+//actions
+import { updateTechStacks, clearFilter } from '../redux/jobs/actions'
+
+//utils
 import { filterOptions } from '../utils'
 
-const FILTER = {
-    label: 'Tech Stack',
-    options: [
-        {name: 'Java', value: 'java'},
-        {name: 'Ruby', value: 'ruby'},
-        {name: 'Golang', value: 'golang'},
-        {name: 'Javascript', value: 'javascript'},
-        {name: 'C++', value: 'c++'},
-        {name: 'HTML', value: 'html'},
-        {name: 'CSS', value: 'css'},
-    ]
-}
+//constants
+import { TECH_STACK_FILTER } from '../constants'
 
 const TechStackFilter = () => {
     const dispatch = useDispatch();
     const {techStack} = useSelector(state => state.jobReducer)
 
-    const [filters, setFilters] = useState(FILTER);
+    const [filters, setFilters] = useState(TECH_STACK_FILTER);
 
     useEffect(() => {
-        setFilters(prevItem => ({...prevItem, options: filterOptions(FILTER.options, techStack)}))
+        setFilters(prevItem => ({...prevItem, options: filterOptions(TECH_STACK_FILTER.options, techStack)}))
     },[techStack])
 
     const handleSelect = (tech) => {
@@ -41,7 +37,13 @@ const TechStackFilter = () => {
     }
 
   return (
-    <MultiselectFilter chips={techStack} filter={filters} onSelect={handleSelect} handleClearAll={handleClearAll} handleDelete={handleDelete}/>
+    <MultiselectFilter
+        chips={techStack}
+        filter={filters}
+        onSelect={handleSelect}
+        handleClearAll={handleClearAll}
+        handleDelete={handleDelete}
+    />
   )
 }
 

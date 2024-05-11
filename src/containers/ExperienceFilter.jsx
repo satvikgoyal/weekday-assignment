@@ -1,41 +1,32 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateExperience, clearFilter } from '../redux/jobs/actions'
+
+//components
 import MultiselectFilter from '../components/MultiselectFilter'
+
+//actions
+import { updateExperience, clearFilter } from '../redux/jobs/actions'
+
+//utils
 import { filterOptions } from '../utils'
 
-const FILTER = {
-    label: 'Experience',
-    options: [
-        {name: '1', value: '1'},
-        {name: '2', value: '2'},
-        {name: '3', value: '3'},
-        {name: '4', value: '4'},
-        {name: '5', value: '5'},
-        {name: '6', value: '6'},
-        {name: '7', value: '7'},
-        {name: '8', value: '8'},
-        {name: '9', value: '9'},
-    ]
-}
+//constants
+import { EXPERIENCE_FILTER } from '../constants'
+
 const ExperienceFilter = () => {
 
     const dispatch = useDispatch();
     const {experience} = useSelector(state => state.jobReducer)
 
-    const [filters, setFilters] = useState(FILTER);
+    const [filters, setFilters] = useState(EXPERIENCE_FILTER);
 
     useEffect(() => {
-        setFilters(prevItem => ({...prevItem, options: filterOptions(FILTER.options, experience)}))
+        setFilters(prevItem => ({...prevItem, options: filterOptions(EXPERIENCE_FILTER.options, experience)}))
     },[experience])
 
     const handleSelect = (experience) => {
         dispatch(updateExperience(experience));
     }
-
-    useEffect(() => {
-        console.log('experience', experience);
-    }, [experience]);
 
     const handleClearAll = () => {
         dispatch(clearFilter('experience', []))
@@ -47,7 +38,13 @@ const ExperienceFilter = () => {
     }
 
   return (
-    <MultiselectFilter chips={experience} filter={filters} onSelect={handleSelect} handleClearAll={handleClearAll} handleDelete={handleDelete}/>
+    <MultiselectFilter
+        chips={experience}
+        filter={filters}
+        onSelect={handleSelect}
+        handleClearAll={handleClearAll}
+        handleDelete={handleDelete}
+    />
   )
 }
 

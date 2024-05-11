@@ -1,4 +1,6 @@
 import React from 'react'
+
+//utils
 import { getSalary } from '../utils'
 
 const JobCardBody = ({item}) => {

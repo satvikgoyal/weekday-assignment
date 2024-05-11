@@ -1,5 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+//actions
 import { updateCompanyName } from '../redux/jobs/actions'
 
 const CompanyFilter = () => {

@@ -1,4 +1,6 @@
 import React from 'react'
+
+//components
 import JobCardBody from './JobCardBody'
 import JobCardFooter from './JobCardFooter'
 import JobCardHeader from './JobCardHeader'

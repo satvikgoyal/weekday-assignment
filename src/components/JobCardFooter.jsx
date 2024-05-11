@@ -1,4 +1,6 @@
 import React from 'react'
+
+//utils
 import { redirectToJobLink } from '../utils'
 
 const JobCardFooter = ({item}) => {

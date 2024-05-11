@@ -1,20 +1,29 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import JobCard from './components/JobCard';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateJobs } from './redux/jobs/actions';
+import axios from 'axios';
+
+//components
+import JobCard from './components/JobCard';
 import RoleFilter from './containers/RoleFilter';
+import ExperienceFilter from './containers/ExperienceFilter';
 import EmployeeFilter from './containers/EmployeeFilter';
 import RemoteFilter from './containers/RemoteFilter';
 import TechStackFilter from './containers/TechStackFilter';
 import BasePayFilter from './containers/BasePayFilter';
 import CompanyFilter from './containers/CompanyFilter';
-import { filterJobs } from './utils';
 import Spinner from './components/Spinner';
-import './App.css';
-import ExperienceFilter from './containers/ExperienceFilter';
 
-const THRESHOLD = 10;
+//actions
+import { updateJobs } from './redux/jobs/actions';
+
+//utils
+import { filterJobs } from './utils';
+
+//constants
+import { SCROLL_THRESHOLD } from './constants';
+
+//css
+import './App.css';
 
 function App() {
   const {
@@ -30,10 +39,9 @@ function App() {
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [loader, showLoader] = useState(false);
-
   const [jobs, setJobs] = useState(items || []);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     try{
       const res = await axios.post('https://api.weekday.technology/adhoc/getSampleJdJSON', {
@@ -41,22 +49,26 @@ function App() {
         offset: page
       })
       dispatch(updateJobs(res.data.jdList));
+
+      //setting page value to decide offset
       setPage(prevPage => prevPage + 1);
     }catch (error) {
       console.error('Error fetching data:', error);
     }
     setIsLoading(false);
-  }
+  }, [page, dispatch])
 
-  const handleScroll = () => {
+  //logic to perform infinite scroll
+  const handleScroll = useCallback(() => {
     if (
-      window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - THRESHOLD
+      window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - SCROLL_THRESHOLD
       && !isLoading
     ) {
       fetchData();
     }
-  };
+  },[fetchData, isLoading]);
 
+  //adding the handleScroll function to eventlistner
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -64,16 +76,21 @@ function App() {
     };
   }, [page, handleScroll]);
 
-  useEffect(async () => {
+  //fetching data when component mounts
+  useEffect(() => {
       showLoader(true);
-      await fetchData();
-      showLoader(false);
+      fetchData().finally(() => {
+        showLoader(false);
+      });
 
+      //clearing up jobs when component unmounts
       return () => {
         dispatch(updateJobs([]));
       }
   },[]);
 
+
+  //logic to perform filter operations
   useEffect(() => {
     if(items.length){
       showLoader(true);

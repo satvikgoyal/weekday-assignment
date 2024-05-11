@@ -1,3 +1,4 @@
+//declaring action types
 export const ACTIONS = {
     FETCH_JOBS: 'FETCH_JOBS',
     ROLE_UPDATE: 'ROLE_UPDATE',
@@ -10,6 +11,7 @@ export const ACTIONS = {
     CLEAR_ALL: 'CLEAR_ALL'
 };
 
+//set jobs fetched from api
 export const updateJobs = (items) => {
     return {
         type: ACTIONS.FETCH_JOBS,
@@ -17,6 +19,7 @@ export const updateJobs = (items) => {
     }
 }
 
+//roles selected via multiselect filter
 export const updateRoles = (role) => {
     return {
         type: ACTIONS.ROLE_UPDATE,
@@ -24,6 +27,7 @@ export const updateRoles = (role) => {
     }
 }
 
+//employee selected via multiselect filter
 export const updateEmployeeNumbers = (employeeNumber) => {
     return {
         type: ACTIONS.EMPLOYEE_NUMBER_UPDATE,
@@ -31,6 +35,7 @@ export const updateEmployeeNumbers = (employeeNumber) => {
     }
 }
 
+//experience selected via multiselect filter
 export const updateExperience = (experience) => {
     return {
         type: ACTIONS.EXPERIENCE_UPDATE,
@@ -38,6 +43,7 @@ export const updateExperience = (experience) => {
     }
 }
 
+//location selected via multiselect filter
 export const updateLocations = (location) => {
     return {
         type: ACTIONS.LOCATIONS_UPDATE,
@@ -45,6 +51,7 @@ export const updateLocations = (location) => {
     }
 }
 
+//techstack selected via multiselect filter
 export const updateTechStacks = (techStack) => {
     return {
         type: ACTIONS.TECH_STACK_UPDATE,
@@ -52,6 +59,7 @@ export const updateTechStacks = (techStack) => {
     }
 }
 
+//basepay selected via multiselect filter
 export const updateBasePay = (experience) => {
     return {
         type: ACTIONS.BASE_PAY_UPDATE,
@@ -59,6 +67,7 @@ export const updateBasePay = (experience) => {
     }
 }
 
+//company selected via filter
 export const updateCompanyName = (companyName) => {
     return {
         type: ACTIONS.COMPANY_NAME_UPDATE,
@@ -66,6 +75,8 @@ export const updateCompanyName = (companyName) => {
     }
 }
 
+
+//clearing the whole filter
 export const clearFilter = (filterName, filterVal) => {
     return{
         type: ACTIONS.CLEAR_ALL,
