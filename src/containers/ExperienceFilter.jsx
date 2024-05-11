@@ -25,6 +25,7 @@ const ExperienceFilter = () => {
     },[experience])
 
     const handleSelect = (experience) => {
+        handleClearAll();
         dispatch(updateExperience(experience));
     }
 
