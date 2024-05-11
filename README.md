@@ -20,3 +20,4 @@ Note: For the scope of this assignment, the "filter jobs" section is only limite
 5. Clear out filters individually and see jobs getting updated accordingly.
 6. Clear a filter with multiple value all at once. All jobs should be visible.
 7. Try putting some random company name and check if their is any jobs associated with or not.
+8. Try to perform the operations on mobile devices as well. 
