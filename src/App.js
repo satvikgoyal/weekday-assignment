@@ -78,15 +78,18 @@ function App() {
 
   //fetching data when component mounts
   useEffect(() => {
-      showLoader(true);
-      fetchData().finally(() => {
-        showLoader(false);
-      });
+      if(!items.length){
+        showLoader(true);
+        fetchData().finally(() => {
+          showLoader(false);
+        });
+      }
 
       //clearing up jobs when component unmounts
       return () => {
         dispatch(updateJobs([]));
       }
+    //eslint-disable-next-line
   },[]);
 
 
@@ -129,7 +132,7 @@ function App() {
             {
               jobs.length > 0 ? jobs.map((job) => {
                 return (
-                  <JobCard item = {job}/>
+                  <JobCard item = {job} key={job.jdUid}/>
                 )
               })
               : <p>No records found</p>

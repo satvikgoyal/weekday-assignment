@@ -163,6 +163,10 @@ code {
   align-items: flex-start;
 }
 
+.status-container > button:hover{
+  cursor: pointer;
+}
+
 .status-container{
   justify-content: space-between;
   display: flex;
@@ -450,9 +454,8 @@ code {
   height: 42px;
 }
 
-.company-name-filter > .input-container >  .placeholder-text{
-  position: relative;
-  top: 2px;
+.company-name-filter > .input-container{
+  display: block;
 }
 
 @-webkit-keyframes sk-bounce {

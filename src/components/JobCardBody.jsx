@@ -7,17 +7,17 @@ const JobCardBody = ({item}) => {
   return (
     <div className="job-card-body">
         <div className="company-details-container">
-            <img class="company-logo" src={item.logoUrl} alt="img"/>
+            <img className="company-logo" src={item.logoUrl} alt="img"/>
             <div>
                 <div className="info-container">
                     <h3 className="company-name">{item.companyName}</h3>
                     <h2 className="designation">{item.jobRole} Engineer</h2>
                 </div>
-                <p class="cards-sub-text">{item.jobLocation}</p>
+                <p className="cards-sub-text">{item.jobLocation}</p>
             </div>
         </div>
-        <p class="card-salary">Estimated Salary: {getSalary(item)}
-            <span aria-label="Offered salary range" class=""> ✅</span>
+        <p className="card-salary">Estimated Salary: {getSalary(item)}
+            <span aria-label="Offered salary range" className=""> ✅</span>
         </p>
         <div className="company-info-container">
             <p className="info-title">About company</p>
@@ -47,7 +47,7 @@ const JobCardBody = ({item}) => {
         <div className="view-job-container">
             <a href={item.jdLink}>View job</a>
         </div>
-        <div class="info-container poc-info-container">
+        <div className="info-container poc-info-container">
             <h3 style={{marginTop: '10px'}}>Minimum Experience</h3>
             <h2 className="experience-time">{item.minExp ?? (item.maxExp ?? '0-1 yrs')}</h2>
         </div>

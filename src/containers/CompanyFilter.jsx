@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 //actions
@@ -9,8 +9,14 @@ const CompanyFilter = () => {
     const dispatch = useDispatch();
     const {companyName} = useSelector(state => state.jobReducer)
 
+    const [showInput, setShowInput] = useState(false);
+
     const handleChange = (companyName) => {
         dispatch(updateCompanyName(companyName));
+    }
+
+    const handleClick = () => {
+      setShowInput(true)
     }
 
   return (
@@ -18,9 +24,9 @@ const CompanyFilter = () => {
       <p className="filter-label">Company Name</p>
       <div className="multi-select-filter-container company-name-filter">
         <div className="input-container">
-            {(!companyName ? <div className="placeholder-text">Company Name</div> : null)}
-            <input
-                class="select__input input-text"
+            {(!companyName && !showInput? <div className="placeholder-text" onClick={handleClick}>Company Name</div> : null)}
+            { showInput ? <input
+                className="select__input input-text"
                 autocapitalize="none"
                 autocomplete="off"
                 autocorrect="off"
@@ -28,13 +34,11 @@ const CompanyFilter = () => {
                 spellcheck="false"
                 tabindex="0"
                 type="text"
-                aria-autocomplete="list"
-                aria-expanded="false"
-                aria-haspopup="true"
-                role="combobox"
                 value={companyName}
+                autoFocus={true}
+                onBlur={() => setShowInput(false)}
                 onChange={e => handleChange(e.target.value)}
-            />
+            />: null}
         </div>
       </div>
     </div>
